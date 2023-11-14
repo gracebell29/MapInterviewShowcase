@@ -38,7 +38,7 @@
 <script>
     // Sample data - replace with your own data
     const mapData = [
-        { url: 'map1.jpg', description: 'Description for Map 1' },
+        { url: 'map1.png', description: 'this is a map' },
         { url: 'map2.jpg', description: 'Description for Map 2' },
         { url: 'map3.jpg', description: 'Description for Map 3' },
         // Add more images as needed
