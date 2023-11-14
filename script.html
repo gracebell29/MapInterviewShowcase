@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Map Gallery</title>
+    <title>Scrollable Image Gallery</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         #gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
         }
 
-        .map {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
+        .image-container {
+            max-width: 600px;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
         img {
             max-width: 100%;
             height: auto;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption {
+            text-align: center;
+            margin-top: 10px;
+            color: #555;
         }
     </style>
 </head>
@@ -37,34 +45,35 @@
 
 <script>
     // Sample data - replace with your own data
-    const mapData = [
-        { url: 'map1.png', description: 'this is a map' },
-       /// { url: 'map2.jpg', description: 'Description for Map 2' },
-       /// { url: 'map3.jpg', description: 'Description for Map 3' },
+    const imageData = [
+        { url: 'map1.png', caption: 'Caption for Image 1' },
+        //{ url: 'image2.jpg', caption: 'Caption for Image 2' },
+        //{ url: 'image3.jpg', caption: 'Caption for Image 3' },
         // Add more images as needed
     ];
 
-    // Function to create map elements
-    function createMapElement(map) {
-        const mapElement = document.createElement('div');
-        mapElement.classList.add('map');
+    // Function to create image elements
+    function createImageElement(image) {
+        const container = document.createElement('div');
+        container.classList.add('image-container');
 
-        const image = document.createElement('img');
-        image.src = map.url;
-        mapElement.appendChild(image);
+        const img = document.createElement('img');
+        img.src = image.url;
+        container.appendChild(img);
 
-        const description = document.createElement('p');
-        description.textContent = map.description;
-        mapElement.appendChild(description);
+        const caption = document.createElement('p');
+        caption.classList.add('caption');
+        caption.textContent = image.caption;
+        container.appendChild(caption);
 
-        return mapElement;
+        return container;
     }
 
-    // Populate the gallery with map elements
+    // Populate the gallery with image elements
     const gallery = document.getElementById('gallery');
-    mapData.forEach(map => {
-        const mapElement = createMapElement(map);
-        gallery.appendChild(mapElement);
+    imageData.forEach(image => {
+        const imageElement = createImageElement(image);
+        gallery.appendChild(imageElement);
     });
 </script>
 
