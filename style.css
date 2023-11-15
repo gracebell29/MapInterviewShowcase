@@ -13,7 +13,7 @@ body {
 header {
     background-color: #64A771;
     color: #fff;
-    padding: 15px 0; /* Increased padding for better spacing */
+    padding: 15px 0; 
 }
 
 nav ul {
@@ -30,7 +30,7 @@ nav ul li {
 a {
     text-decoration: none;
     color: #fff;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px; 
 }
 
 .hero {
@@ -56,10 +56,10 @@ a {
 }
 
 .map p {
-    padding: 15px; /* Increased padding for better spacing */
+    padding: 15px; 
     margin: 0;
     text-align: center;
-    font-size: 14px; /* Increased font size */
+    font-size: 14px; 
 }
 
 .about,
@@ -69,9 +69,9 @@ a {
 }
 
 footer {
-    background-color: #333;
+    background-color: #64A771;
     color: #fff;
     text-align: center;
-    padding: 15px 0; /* Increased padding for better spacing */
-    font-size: 14px; /* Increased font size */
+    padding: 15px 0; 
+    font-size: 14px; 
 }
