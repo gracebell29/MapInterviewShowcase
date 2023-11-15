@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+  <script src="date2017.js"></script>
+  <script src="date2018.js"></script>
+  <script src="date2019.js"></script>
+  <script src="date2020.js"></script>
+  <script src="date2021.js"></script>
+  <script src="allcleaned.js"></script>
+  <script src="section.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wild Fires in California</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #b4bcce;
+  font-family: Helvetica, sans-serif;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.container {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.container::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #FF9F55;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 22px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.content {
+  padding: 20px 30px;
+  background-color: white;
+  position: relative;
+  border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media screen and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+  left: 31px;
+  }
+  
+  /* Full-width containers */
+  .container {
+  width: 100%;
+  padding-left: 70px;
+  padding-right: 25px;
+  }
+  
+  /* Make sure that all arrows are pointing leftwards */
+  .container::before {
+  left: 60px;
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+  left: 15px;
+  }
+  
+  /* Make all right containers behave like the left ones */
+  .right {
+  left: 0%;
+  }
+}
+</style>
+</head>
+<body>
+    <h1 style="text-align:center;font-family:verdana" >California Wildfire History</h1>
+
+    <h2 style="font-family:verdana"> Intro</h2>
+    <p style="font-family:verdana">Fires are naturally occuring and often needed for the survival of various ecosystems. Humans often view fire as a bad thing for a variety of reasons. This can lead to policies of complete fire suppression. This website will give a large amount of information regarding the history of wildfire suppression and the state of wildfires currently in California. To understand the why complete fire suppression can be so bad, people need to know why fires can be benefical. First, it helps clean the forest floor and opens it up to sunlight. Also, fires will burn the brush from the floor allowing for low intensity fires that are mostly on the ground. Fires also help provide habitats by clearing the heavy brush away so there can be new grasses and shrubs that provide food and habitat for many species. Fires can also help kill various diseases that would kill species. Another major aspect of fire is that some species are dependent on fire to reproduce. Some species require fire every 3-25 years to reproduce and others have fire resistant bark and cones that need heat to be able to open and then regenerate. While fires may look intimidating or scary they are quite beneficial and needed for the success of some ecosystems</p>
+
+
+    <h2 style="font-family:verdana"> Wildfire Suppression Timeline</h2>
+    <p style="font-family:verdana">A general overview of major historical dates regarding fire supression in the US.</p>
+
+<div class="timeline">
+  <div class="container left">
+    <div class="content">
+      <h2>Late 1800s</h2>
+      <p>Large fires were occuring that sparked conversation within the conservation community fearing that timber supplies would be decreasing. This lead to setting aside land to be set aside as national forest reseervation to protect timber supplies. </p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>1905</h2>
+      <p>The United States Forest Service was created and was given control over the land that was set aside in the late 1890s.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>1910</h2>
+      <p>Three massive fires known as the Big Blowup occured burning over 3 million acres in two days. This lead to fire administrators meeting and they convinced themselve that total fire supression was the only to prevent another event like this from happening again. As a result the Forest Serive put this polciy in place. Three of the men who fought the Big Blowup fires had high postions in the Forest Services which allowed for the total fire supression policy to easily be enacted. </p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>1911</h2>
+      <p>The Weeks Act of 1911 was past which was legistlation between the federal and state goverment for cooperative firefighting that offered financial incentive for the states for fighting fires. </p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>1926</h2>
+      <p>The US Forest Service enacted a policy the required all fires over 10 acres to be suppresed and put out.</p>
+    </div>
+  </div>  
+  <div class="container right">
+    <div class="content">
+      <h2>1933</h2>
+      <p>The federal government created the Civilian Conservation Corps whcih had thousands of works building fire breaks and fighting fires.</p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>1935</h2>
+      <p>The 10 a.m. policy was created which said that every fire needed to be supressed by 10 a.m. the day after it was reported. This replaced the policy in 1926 that allowed fires under 10 acres to burn. </p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>1944</h2>
+      <p>Smokey the Bear was created by the US government to help educate the public about fire prevention. This centered around the idea that any fire would hurt timber products. </p>
+    </div>
+  </div>
+  <div class="container left">
+    <div class="content">
+      <h2>1960s</h2>
+      <p>Significant amount of research started to come out stating the postive role that fire has in forest ecosystems. </p>
+    </div>
+  </div>
+  <div class="container right">
+    <div class="content">
+      <h2>1970s</h2>
+      <p>The research from the 60s made a radical shift in fire policy. Fires were allowed to burn when and where the government deemed appropriate. This got rid of the 10 a.m. policy. </p>
+    </div>
+  </div>
+</div>
+
+
+
+    <h2 style="font-family:verdana"> Map of Recent Fires</h2>
+    <p style="font-family:verdana">This map shows all fires within the state of California from the years 2017-2021. They are depicted in different colors. Use the layer selector in the top right corner to pick which years are shown.  </p>
+  </head>
+  <style>
+      #map { width: 80%;
+      height: 600px; 
+      background-color: blueviolet;}
+  </style>
+  <body>
+      <div id="map"></div>
+      <script>
+      var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '© OpenStreetMap',
+          
+      });
+      function style(feature) {
+      return {
+          weight: 1,
+          opacity: 1,
+          color: 'red',
+          fillColor: 'red',
+          fillOpacity: 0.5
+      };  
+  }
+  function style2(feature) {
+      return {
+          weight: 1,
+          opacity: 1,
+          color: 'blueviolet',
+          fillColor: 'plum',
+          fillOpacity: 0.5
+      };
+  }
+  
+  function style3(feature) {
+      return {
+          weight: 1,
+          opacity: 1,
+          color: 'fuchsia',
+          fillColor: 'pink',
+          fillOpacity: 0.5
+      };
+  }
+  
+  function style4(feature) {
+      return {
+          weight: 1,
+          opacity: 1,
+          color: 'yellow',
+          fillColor: 'yellow',
+          fillOpacity: 0.5
+      };
+  }
+  
+  function style5(feature) {
+      return {
+          weight: 1,
+          opacity: 1,
+          color: 'green',
+          fillColor: 'green',
+          fillOpacity: 0.5
+      };
+  }
+      var geojson = L.geoJSON(date2017, {style: style});
+      var geojson2 = L.geoJSON(date2018, {style: style2});
+      var geojson3 = L.geoJSON(date2019, {style: style3});
+      var geojson4 = L.geoJSON(date2020, {style: style4});
+      var geojson5 = L.geoJSON(date2021, {style: style5})
+       
+      var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+  
+      var grayscale = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; ' + mapLink + ' Contributors', maxZoom: 18, });
+      var streets   = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; ' + mapLink + ' Contributors', maxZoom: 18, });
+  
+      
+  
+      var map = L.map('map', {
+      center: [37.110777, -119.167843],
+      zoom: 5.5,
+      layers: [osm,streets,grayscale]
+  });
+  
+  var baseMaps = {
+      "OpenStreetMap": osm,
+      //"Greyscale": grayscale,
+      //"Street": streets
+  };
+  var overlayMaps = {
+      "2017 (Red)": geojson,
+      "2018 (Purple)": geojson2,
+      "2019 (Pink)": geojson3,
+      "2020 (Yellow)": geojson4,
+      "2021 (Green)": geojson5
+  }
+  
+  var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+  geojson.addTo(map)
+  geojson2.addTo(map)
+  geojson3.addTo(map)
+  geojson4.addTo(map)
+  geojson5.addTo(map)
+  
+  
+  
+      </script>
+  </body>
+  
+  </html> 
+
+    <h2 style="font-family:verdana"> The Breakdown of Fires</h2> 
+    <p style="font-family:verdana"> Below are different graphical representations to visual the fires in another form than a map. </p>
+  </head>
+  <style>
+      #myDiv{
+          background-color: rgb(209, 176, 240);
+          width: 100%;
+          height: 500px;
+          
+      }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.14.0/plotly.min.js" integrity="sha512-XDnqTWsAcVl16AYJoBHumISzIYThowGjR67jeL53NSp6tajsq2qf5UeAWvk1n6Hp3M2iMsV/ewhPScBiLCDs9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="allcleaned.js"></script>
+  
+  <body>
+    <h5 style="font-family:verdana"> Graph 1</h5>
+    <p style="font-family:verdana">This graph shows acreage burned from wildfires from 1880 to 2021. The colors show different number of acres. </p>
+      <div id="myDiv2">
+  
+      </div>
+  <script>
+      var y = fires.features.map(e=>Number(e.properties.GIS_ACRES))
+      var x = fires.features.map(e=>e.properties.YEAR_)
+      var trace1 = {
+    x: x,
+    y: y,
+    mode: 'markers',
+    type: 'bar',
+    marker: {color:y, colorscale: 'YlGnBu'
+  
+    }
+  };
+  var layout={
+      title: {
+          text: 'Acres Burned in CA Wildfires since 1880'
+      },
+      orientation: 'h',
+      xaxis:{
+          title:{
+              text: 'Year'
+          }
+      
+      },
+      yaxis: {
+          title:{
+              text: 'Acreage'
+          }
+      }
+  }
+  
+  
+  
+  var data = [trace1];
+  
+  
+  Plotly.newPlot('myDiv2', data, layout);
+  
+  </script>
+  </body>
+  </html>
+
+  
+</head>
+<style>
+    #myDiv{
+        background-color: rgb(209, 176, 240);
+        width: 100%;
+        height: 500px;
+        
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.14.0/plotly.min.js" integrity="sha512-XDnqTWsAcVl16AYJoBHumISzIYThowGjR67jeL53NSp6tajsq2qf5UeAWvk1n6Hp3M2iMsV/ewhPScBiLCDs9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="section.js"></script>
+
+
+
+
+<body>
+  <h5 style="font-family:verdana"> Graph 2</h5>
+  <p style="font-family:verdana">This graph zooms in on the years that were shown on the map (2017-2021). The different colors represent different amount of acres burned.  </p>
+    <div id="myDiv">
+
+    </div>
+<script>
+    var y = fire.features.map(e=>Number(e.properties.GIS_ACRES))
+    var x = fire.features.map(e=>e.properties.YEAR_)
+    var trace1 = {
+  x: x,
+  y: y,
+  mode: 'markers',
+  type: 'bar',
+  marker: {color:y, colorscale: 'YlGnBu'
+
+  }
+};
+var layout={
+    title: {
+        text: 'Acres Burned in CA Wildfires from 2017-2021'
+    },
+    orientation: 'h',
+    xaxis:{
+        title:{
+            text: 'Year'
+        }
+    
+    },
+    yaxis: {
+        title:{
+            text: 'Acreage'
+        }
+    }
+}
+
+
+
+var data = [trace1];
+
+
+Plotly.newPlot('myDiv', data, layout);
+
+</script>
+</body>
+</html>
+
+
+    <h2 style="font-family:verdana"> Valuable Resources</h2>
+    <p style="font-family:verdana"> </p>   
+    <p></p>
+    <a href="https://www.fire.ca.gov/"> CALFIRE</a>
+    <p></p>
+    <a href="https://www.latimes.com/wildfires-map/">LA Times Active Wildfire Map</a>
+    <p></p>
+    <a href="https://wildfirerecovery.caloes.ca.gov/">CA Government Recovery Resources for Fires</a>
+
+</body>
+</html>
+
+</body>
+</html>
+
+
+    <h2 style="font-family:verdana"> References</h2>
+    <p style="font-family:verdana"> </p> 
+Joyce, C. (2018). How The Smokey Bear Effect Led To Raging Wildfires. NPR. <a href="https://www.npr.org/2012/08/23/159373691/how-the-smokey-bear-effect-led-to-raging-wildfires"> https://www.npr.org/2012/08/23/159373691/how-the-smokey-bear-effect-led-to-raging-wildfires</a> 
+<p></p>
+Wagtendonk, J. (2007). The History and Evolution of Wildland Fire Use. Fire Ecology, 3(2), 3–17. <a href="https://doi.org/10.4996/fireecology.0302003">https://doi.org/10.4996/fireecology.0302003</a> 
+<p></p>
+(n.d.). Benefits of Fire. CALFire.  <a href="https://www.fire.ca.gov/media/5425/benifitsoffire.pdf">https://www.fire.ca.gov/media/5425/benifitsoffire.pdf</a> 
+<p></p>
+(n.d.). U.S. FOREST SERVICE FIRE SUPPRESSION. Forest History Society. <a href="https://foresthistory.org/research-explore/us-forest-service-history/policy-and-law/fire-u-s-forest-service/u-s-forest-service-fire-suppression/#:~:text=In%201933%2C%20the%20federal%20government,day%20following%20its%20initial%20report">https://foresthistory.org/research-explore/us-forest-service-history/policy-and-law/fire-u-s-forest-service/u-s-forest-service-fire-suppression/#:~:text=In%201933%2C%20the%20federal%20government,day%20following%20its%20initial%20report</a>  
+<p></p>
+(n.d.). Fighting Wildfires. PBS. <a href="https://www.pbs.org/wgbh/americanexperience/features/burn-fighting-wildfires/">https://www.pbs.org/wgbh/americanexperience/features/burn-fighting-wildfires/</a> 
+<p></p>
+(2019). California Fire Perimeters (all). California State Geoportal. <a href="https://gis.data.ca.gov/datasets/CALFIRE-Forestry::california-fire-perimeters-all-1/explore?location=38.906952%2C-119.598354%2C7.00&showTable=true">https://gis.data.ca.gov/datasets/CALFIRE-Forestry::california-fire-perimeters-all-1/explore?location=38.906952%2C-119.598354%2C7.00&showTable=true</a> 
+
+  
+
+
+</body>
+</html>
